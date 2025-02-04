@@ -133,7 +133,7 @@ public class ThrowsDemo {
         ThrowsDemo.method1();
     }
 }
-
+```
 
 
 #### Compile & Execute
@@ -189,7 +189,9 @@ public class Main {
     }
 
 }
+```
 
+```java
 class OutOfRange extends Exception {
 
     private int min;
