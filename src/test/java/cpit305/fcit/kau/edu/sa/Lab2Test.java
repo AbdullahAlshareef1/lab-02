@@ -2,17 +2,14 @@ package cpit305.fcit.kau.edu.sa;
 
 import cpit305.fcit.kau.edu.sa.OutOfRangeException;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.lang.reflect.Method;
 
-import org.junit.jupiter.api.function.Executable;
-
-
-
 public class Lab2Test {
     @Test
-    void testValidSquares() {
+    void testValidSquares() throws OutOfRangeException {
         assertEquals(0, SquareCalcApp.square(0));
         assertEquals(1, SquareCalcApp.square(1));
         assertEquals(10000, SquareCalcApp.square(100));
@@ -21,18 +18,24 @@ public class Lab2Test {
 
     @Test
     void testOutOfRangeNumbers() {
-        Method method = SquareCalcApp.class.getMethod("square");
-        Class<?>[] exceptionTypes = method.getExceptionTypes();
-
+        Method[] methods = SquareCalcApp.class.getDeclaredMethods();
         boolean hasOutOfRangeException = false;
+        for (Method method : methods) {
+            if (method.getName().equalsIgnoreCase("square")) {
+                Class<?>[] exceptionTypes = method.getExceptionTypes();
 
-        for (Class<?> exceptionType : exceptionTypes) {
-            if (exceptionType.equals(OutOfRangeException.class)) {
-                hasOutOfRangeException = true;
+                for (Class<?> exceptionType : exceptionTypes) {
+                    if (exceptionType.equals(OutOfRangeException.class)) {
+                        hasOutOfRangeException = true;
+                    }
+                }
+                assertTrue(hasOutOfRangeException, "Method does not throw OutOfRangeException");
+                return;
             }
         }
-        assertTrue(hasOutOfRangeException, "Method does not throw OutOfRangeException");
+        fail("square method not found. Please make sure the method is called square and has the correct signature");
     }
+
     @Test
     void assertThrowsOutOfRangeException() {
         assertThrows(OutOfRangeException.class, () -> {
