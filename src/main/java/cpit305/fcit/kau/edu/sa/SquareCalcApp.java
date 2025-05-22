@@ -4,11 +4,11 @@ import javax.swing.*;
 
 public class SquareCalcApp {
 
-    public static int power(int x) throws OutOfRangeException {
-        if (x < 0 || x > 100) {
+    public static int square(int number) throws OutOfRangeException {
+        if (number < 0 || number > 100) {
             throw new OutOfRangeException(0, 100);
         }
-        return x * x;
+        return number * number;
     }
 
     public static void main(String[] args) {
@@ -16,7 +16,7 @@ public class SquareCalcApp {
 
         try {
             int x = Integer.parseInt(input);
-            System.out.println(x + " * " + x + " = " + power(x));
+            System.out.println(x + " * " + x + " = " + square(x));
         } catch (OutOfRangeException e) {
             System.err.println("Custom Exception: " + e.getMessage());
         } catch (NumberFormatException e) {
