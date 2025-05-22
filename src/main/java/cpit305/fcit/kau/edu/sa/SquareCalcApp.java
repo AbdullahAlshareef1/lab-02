@@ -1,31 +1,30 @@
 package cpit305.fcit.kau.edu.sa;
 
-import java.util.Scanner;
+import javax.swing.*;
 
 public class SquareCalcApp {
 
-    // Complete this method but do not change the method name
-    public static int square(int number) throws OutOfRangeException {
-        if (number < 0 || number > 100) {
+    public static int power(int x) throws OutOfRangeException {
+        if (x < 0 || x > 100) {
             throw new OutOfRangeException(0, 100);
         }
-        return number * number;
+        return x * x;
     }
 
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        System.out.print("Enter a number to calculate its square (0 to 100): ");
+        String input = JOptionPane.showInputDialog("Enter number to power it:");
 
         try {
-            int num = Integer.parseInt(input.nextLine());
-            int result = square(num);
-            System.out.println(num + " * " + num + " = " + result);
+            int x = Integer.parseInt(input);
+            System.out.println(x + " * " + x + " = " + power(x));
         } catch (OutOfRangeException e) {
-            System.err.println(e.getMessage());
+            System.err.println("Custom Exception: " + e.getMessage());
         } catch (NumberFormatException e) {
-            System.err.println("Invalid input: Please enter an integer.");
+            System.err.println("Invalid input. Please enter an integer.");
         } finally {
-            System.out.println("Execution complete.");
+            System.out.println("This is Finally Block");
         }
+
+        System.out.println("This is Next Statement");
     }
 }

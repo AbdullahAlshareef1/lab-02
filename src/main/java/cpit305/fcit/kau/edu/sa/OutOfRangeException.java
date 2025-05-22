@@ -1,7 +1,6 @@
 package cpit305.fcit.kau.edu.sa;
 
 public class OutOfRangeException extends Exception {
-
     private final int min;
     private final int max;
 
@@ -12,6 +11,6 @@ public class OutOfRangeException extends Exception {
 
     @Override
     public String getMessage() {
-        return "Error: number must be between " + min + " and " + max + ".";
+        return "Error: number must be between " + min + " and " + max;
     }
 }
